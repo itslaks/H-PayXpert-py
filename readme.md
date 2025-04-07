@@ -1,9 +1,3 @@
-Excellent idea! Here's a more colorful, detailed, and highly professional version of your `README.md` — keeping it clean, precise, and project-ready.
-
-I've elaborated every section — while maintaining clarity — adding developer-friendly presentation, emojis, and a more polished feel.
-
----
-
 # 💼 Payroll Management System — *PayXpert*
 
 > A complete Payroll Management Solution built in Python with MSSQL Server using DAO Design Pattern.
@@ -173,10 +167,15 @@ After running `MainModule.py`, the console-based menu will appear:
 ## 🚀 Features Highlight
 
 ✔️ Clean DAO Structure for Separation of Concerns
+
 ✔️ Centralized Database Connection Utility
+
 ✔️ Proper Exception Handling
+
 ✔️ CRUD Operations on All Modules
+
 ✔️ Fully Menu-driven User Interface
+
 ✔️ SQL Integrated System
 
 ---
