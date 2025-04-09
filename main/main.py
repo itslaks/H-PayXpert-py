@@ -52,7 +52,9 @@ def employee_menu():
                 emp_id = int(input("Enter Employee ID: "))
                 emp = dao.get_employee_by_id(emp_id)
                 if emp:
-                    print(vars(emp))
+                    print(f"\nEmployee ID: {emp.employee_id}")
+                    for field, value in vars(emp).items():
+                        print(f"{field}: {value}")
                 else:
                     raise EmployeeNotFoundException(f"Employee with ID {emp_id} not found.")
 
@@ -62,22 +64,52 @@ def employee_menu():
                     print("No employees found.")
                 else:
                     for emp in employees:
-                        print(vars(emp))
+                        print(f"\nEmployee ID: {emp.employee_id}")
+                        for field, value in vars(emp).items():
+                            print(f"{field}: {value}")
+                        print("-" * 40)
 
             elif choice == 4:
                 emp_id = int(input("Enter Employee ID to Update: "))
                 emp = dao.get_employee_by_id(emp_id)
                 if emp:
-                    emp.first_name = input("First Name: ")
-                    emp.last_name = input("Last Name: ")
-                    emp.dob = input("Date of Birth (YYYY-MM-DD): ")
-                    emp.gender = input("Gender: ")
-                    emp.email = input("Email: ")
-                    emp.phone = input("Phone Number: ")
-                    emp.address = input("Address: ")
-                    emp.position = input("Position: ")
-                    emp.joining_date = input("Joining Date (YYYY-MM-DD): ")
-                    emp.termination_date = input("Termination Date (YYYY-MM-DD or press Enter for None): ") or None
+                    print("\nCurrent Employee Details:")
+                    print(f"Employee ID: {emp.employee_id}")
+                    for field, value in vars(emp).items():
+                        print(f"{field}: {value}")
+                    
+                    print("\nSelect field to update (press Enter to keep current value):")
+                    
+                    new_first_name = input(f"First Name [{emp.first_name}]: ")
+                    emp.first_name = new_first_name if new_first_name else emp.first_name
+                    
+                    new_last_name = input(f"Last Name [{emp.last_name}]: ")
+                    emp.last_name = new_last_name if new_last_name else emp.last_name
+                    
+                    new_dob = input(f"Date of Birth [{emp.dob}]: ")
+                    emp.dob = new_dob if new_dob else emp.dob
+                    
+                    new_gender = input(f"Gender [{emp.gender}]: ")
+                    emp.gender = new_gender if new_gender else emp.gender
+                    
+                    new_email = input(f"Email [{emp.email}]: ")
+                    emp.email = new_email if new_email else emp.email
+                    
+                    new_phone = input(f"Phone Number [{emp.phone}]: ")
+                    emp.phone = new_phone if new_phone else emp.phone
+                    
+                    new_address = input(f"Address [{emp.address}]: ")
+                    emp.address = new_address if new_address else emp.address
+                    
+                    new_position = input(f"Position [{emp.position}]: ")
+                    emp.position = new_position if new_position else emp.position
+                    
+                    new_joining_date = input(f"Joining Date [{emp.joining_date}]: ")
+                    emp.joining_date = new_joining_date if new_joining_date else emp.joining_date
+                    
+                    new_termination_date = input(f"Termination Date [{emp.termination_date or 'None'}]: ")
+                    emp.termination_date = new_termination_date if new_termination_date else emp.termination_date
+                    
                     dao.update_employee(emp)
                     print("Employee updated successfully.")
                 else:
@@ -133,7 +165,9 @@ def payroll_menu():
                 pay_id = int(input("Enter Payroll ID: "))
                 pay = dao.get_payroll_by_id(pay_id)
                 if pay:
-                    print(vars(pay))
+                    print(f"\nPayroll ID: {pay.payroll_id}")
+                    for field, value in vars(pay).items():
+                        print(f"{field}: {value}")
                 else:
                     raise PayrollGenerationException(f"Payroll with ID {pay_id} not found.")
 
@@ -143,19 +177,43 @@ def payroll_menu():
                     print("No payroll records found.")
                 else:
                     for pay in payrolls:
-                        print(vars(pay))
+                        print(f"\nPayroll ID: {pay.payroll_id}")
+                        for field, value in vars(pay).items():
+                            print(f"{field}: {value}")
+                        print("-" * 40)
 
             elif choice == 4:
                 pay_id = int(input("Enter Payroll ID to Update: "))
                 pay = dao.get_payroll_by_id(pay_id)
                 if pay:
-                    pay.employee_id = int(input("Employee ID: "))
-                    pay.start_date = input("Start Date (YYYY-MM-DD): ")
-                    pay.end_date = input("End Date (YYYY-MM-DD): ")
-                    pay.basic_salary = float(input("Basic Salary: "))
-                    pay.overtime_pay = float(input("Overtime Pay: "))
-                    pay.deductions = float(input("Deductions: "))
-                    pay.net_salary = float(input("Net Salary: "))
+                    print("\nCurrent Payroll Details:")
+                    print(f"Payroll ID: {pay.payroll_id}")
+                    for field, value in vars(pay).items():
+                        print(f"{field}: {value}")
+                    
+                    print("\nSelect field to update (press Enter to keep current value):")
+                    
+                    new_employee_id = input(f"Employee ID [{pay.employee_id}]: ")
+                    pay.employee_id = int(new_employee_id) if new_employee_id else pay.employee_id
+                    
+                    new_start_date = input(f"Start Date [{pay.start_date}]: ")
+                    pay.start_date = new_start_date if new_start_date else pay.start_date
+                    
+                    new_end_date = input(f"End Date [{pay.end_date}]: ")
+                    pay.end_date = new_end_date if new_end_date else pay.end_date
+                    
+                    new_basic_salary = input(f"Basic Salary [{pay.basic_salary}]: ")
+                    pay.basic_salary = float(new_basic_salary) if new_basic_salary else pay.basic_salary
+                    
+                    new_overtime_pay = input(f"Overtime Pay [{pay.overtime_pay}]: ")
+                    pay.overtime_pay = float(new_overtime_pay) if new_overtime_pay else pay.overtime_pay
+                    
+                    new_deductions = input(f"Deductions [{pay.deductions}]: ")
+                    pay.deductions = float(new_deductions) if new_deductions else pay.deductions
+                    
+                    new_net_salary = input(f"Net Salary [{pay.net_salary}]: ")
+                    pay.net_salary = float(new_net_salary) if new_net_salary else pay.net_salary
+                    
                     dao.update_payroll(pay)
                     print("Payroll updated successfully.")
                 else:
@@ -208,7 +266,9 @@ def tax_menu():
                 tax_id = int(input("Enter Tax ID: "))
                 tax = dao.get_tax_by_id(tax_id)
                 if tax:
-                    print(vars(tax))
+                    print(f"\nTax ID: {tax.tax_id}")
+                    for field, value in vars(tax).items():
+                        print(f"{field}: {value}")
                 else:
                     raise TaxCalculationException(f"Tax record with ID {tax_id} not found.")
 
@@ -218,20 +278,37 @@ def tax_menu():
                     print("No tax records found.")
                 else:
                     for tax in taxes:
-                        print(vars(tax))
+                        print(f"\nTax ID: {tax.tax_id}")
+                        for field, value in vars(tax).items():
+                            print(f"{field}: {value}")
+                        print("-" * 40)
 
             elif choice == 4:
                 tax_id = int(input("Enter Tax ID to Update: "))
                 tax = dao.get_tax_by_id(tax_id)
                 if tax:
-                    tax.employee_id = int(input("Employee ID: "))
-                    tax.tax_year = int(input("Tax Year: "))
-                    tax.taxable_income = float(input("Taxable Income: "))
-                    tax.tax_amount = float(input("Tax Amount: "))
+                    print("\nCurrent Tax Record Details:")
+                    print(f"Tax ID: {tax.tax_id}")
+                    for field, value in vars(tax).items():
+                        print(f"{field}: {value}")
+                    
+                    print("\nSelect field to update (press Enter to keep current value):")
+                    
+                    new_employee_id = input(f"Employee ID [{tax.employee_id}]: ")
+                    tax.employee_id = int(new_employee_id) if new_employee_id else tax.employee_id
+                    
+                    new_tax_year = input(f"Tax Year [{tax.tax_year}]: ")
+                    tax.tax_year = int(new_tax_year) if new_tax_year else tax.tax_year
+                    
+                    new_taxable_income = input(f"Taxable Income [{tax.taxable_income}]: ")
+                    tax.taxable_income = float(new_taxable_income) if new_taxable_income else tax.taxable_income
+                    
+                    new_tax_amount = input(f"Tax Amount [{tax.tax_amount}]: ")
+                    tax.tax_amount = float(new_tax_amount) if new_tax_amount else tax.tax_amount
+                    
                     dao.update_tax_record(tax)
                     print("Tax record updated successfully.")
                 else:
-                    # Fixed: Using TaxCalculationException instead of ApplicationException
                     raise TaxCalculationException(f"Tax record with ID {tax_id} not found.")
 
             elif choice == 5:
@@ -282,7 +359,9 @@ def financial_record_menu():
                 fr_id = int(input("Enter Record ID: "))
                 fr = dao.get_financial_record_by_id(fr_id)
                 if fr:
-                    print(vars(fr))
+                    print(f"\nFinancial Record ID: {fr.record_id}")
+                    for field, value in vars(fr).items():
+                        print(f"{field}: {value}")
                 else:
                     raise FinancialRecordException(f"Financial record with ID {fr_id} not found.")
 
@@ -292,21 +371,40 @@ def financial_record_menu():
                     print("No financial records found.")
                 else:
                     for fr in records:
-                        print(vars(fr))
+                        print(f"\nFinancial Record ID: {fr.record_id}")
+                        for field, value in vars(fr).items():
+                            print(f"{field}: {value}")
+                        print("-" * 40)
 
             elif choice == 4:
                 fr_id = int(input("Enter Record ID to Update: "))
                 fr = dao.get_financial_record_by_id(fr_id)
                 if fr:
-                    fr.employee_id = int(input("Employee ID: "))
-                    fr.record_date = input("Record Date (YYYY-MM-DD): ")
-                    fr.description = input("Description: ")
-                    fr.amount = float(input("Amount: "))
-                    fr.record_type = input("Record Type: ")
+                    print("\nCurrent Financial Record Details:")
+                    print(f"Financial Record ID: {fr.record_id}")
+                    for field, value in vars(fr).items():
+                        print(f"{field}: {value}")
+                    
+                    print("\nSelect field to update (press Enter to keep current value):")
+                    
+                    new_employee_id = input(f"Employee ID [{fr.employee_id}]: ")
+                    fr.employee_id = int(new_employee_id) if new_employee_id else fr.employee_id
+                    
+                    new_record_date = input(f"Record Date [{fr.record_date}]: ")
+                    fr.record_date = new_record_date if new_record_date else fr.record_date
+                    
+                    new_description = input(f"Description [{fr.description}]: ")
+                    fr.description = new_description if new_description else fr.description
+                    
+                    new_amount = input(f"Amount [{fr.amount}]: ")
+                    fr.amount = float(new_amount) if new_amount else fr.amount
+                    
+                    new_record_type = input(f"Record Type [{fr.record_type}]: ")
+                    fr.record_type = new_record_type if new_record_type else fr.record_type
+                    
                     dao.update_financial_record(fr)
                     print("Financial record updated successfully.")
                 else:
-                    # Fixed: Using FinancialRecordException instead of ApplicationException
                     raise FinancialRecordException(f"Financial record with ID {fr_id} not found.")
 
             elif choice == 5:
