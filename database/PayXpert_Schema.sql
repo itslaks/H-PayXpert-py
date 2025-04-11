@@ -17,31 +17,35 @@ CREATE TABLE Employee (
 
 CREATE TABLE Payroll (
     PayrollID INT PRIMARY KEY IDENTITY(1,1),
-    EmployeeID INT FOREIGN KEY REFERENCES Employee(EmployeeID),
+    EmployeeID INT,
     PayPeriodStartDate DATE,
     PayPeriodEndDate DATE,
     BasicSalary DECIMAL(10,2),
     OvertimePay DECIMAL(10,2),
     Deductions DECIMAL(10,2),
-    NetSalary DECIMAL(10,2)
+    NetSalary DECIMAL(10,2),
+    FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID) ON DELETE CASCADE
 );
 
 CREATE TABLE Tax (
     TaxID INT PRIMARY KEY IDENTITY(1,1),
-    EmployeeID INT FOREIGN KEY REFERENCES Employee(EmployeeID),
+    EmployeeID INT,
     TaxYear INT,
     TaxableIncome DECIMAL(10,2),
-    TaxAmount DECIMAL(10,2)
+    TaxAmount DECIMAL(10,2),
+    FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID) ON DELETE CASCADE
 );
 
 CREATE TABLE FinancialRecord (
     RecordID INT PRIMARY KEY IDENTITY(1,1),
-    EmployeeID INT FOREIGN KEY REFERENCES Employee(EmployeeID),
+    EmployeeID INT,
     RecordDate DATE,
     Description NVARCHAR(255),
     Amount DECIMAL(10,2),
-    RecordType NVARCHAR(50)
+    RecordType NVARCHAR(50),
+    FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID) ON DELETE CASCADE
 );
+
 
 
 
@@ -80,3 +84,7 @@ INSERT INTO FinancialRecord VALUES
 (4, '2024-03-10', 'Salary Advance', -10000, 'Deduction'),
 (5, '2024-03-05', 'Loan Repayment', -15000, 'Deduction'),
 (6, '2024-03-28', 'Performance Incentive', 700000, 'Credit');
+
+
+
+Select * From Employee;
