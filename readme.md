@@ -1,7 +1,6 @@
 # 💼 Payroll Management System — *PayXpert*
 
-> A complete Payroll Management Solution built in Python with MSSQL Server using DAO Design Pattern.
-> Clean Architecture | Modular Code | Fully Functional | SQL Integrated
+
 
 ---
 
