@@ -70,8 +70,8 @@ PayrollManagementSystem/
 ### Step 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/itslaks/PayrollManagementSystem.git
-cd PayrollManagementSystem
+git clone https://github.com/itslaks/H-PayXpert-py.git
+cd H-PayXpert-py
 ```
 
 ---
